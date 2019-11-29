@@ -45,7 +45,7 @@
         },
         "location": {
             "type": "string",
-            "defaultValue": "[resourceGroup().location]",
+            "defaultValue": "Canada Central",
             "metadata": {
                 "description": "Location for all resources."
             }

@@ -18,7 +18,7 @@
       "value": "Standard_A2_v2"
     },
     "location": {
-      "value": "[resourceGroup().location]"
+      "value": "Canada Central"
     }
   }
 }

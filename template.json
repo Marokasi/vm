@@ -42,16 +42,11 @@
             "metadata": {
                 "description": "Size of the virtual machine."
             }
-        },
-        "location": {
-            "type": "string",
-            "defaultValue": "Canada Central",
-            "metadata": {
-                "description": "Location for all resources."
-            }
-        }
+        } 
     },
     "variables": {
+
+        "location": "Canada Central",
         "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'sawinvm')]",
         "nicName": "myVMNic",
         "addressPrefix": "10.0.0.0/16",
@@ -68,7 +63,7 @@
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2018-11-01",
             "name": "[variables('storageAccountName')]",
-            "location": "[parameters('location')]",
+            "location": "[variables('location')]",
             "sku": {
                 "name": "Standard_LRS"
             },
@@ -79,7 +74,7 @@
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2018-11-01",
             "name": "[variables('publicIPAddressName')]",
-            "location": "[parameters('location')]",
+            "location": "[variables('location')]",
             "properties": {
                 "publicIPAllocationMethod": "Dynamic",
                 "dnsSettings": {
@@ -92,7 +87,7 @@
             "type": "Microsoft.Network/networkSecurityGroups",
             "apiVersion": "2019-08-01",
             "name": "[variables('networkSecurityGroupName')]",
-            "location": "[parameters('location')]",
+            "location": "[variables('location')]",
             "properties": {
                 "securityRules": [
                     {
@@ -115,7 +110,7 @@
             "type": "Microsoft.Network/virtualNetworks",
             "apiVersion": "2018-11-01",
             "name": "[variables('virtualNetworkName')]",
-            "location": "[parameters('location')]",
+            "location": "[variables('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
             ],
@@ -142,7 +137,7 @@
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2018-11-01",
             "name": "[variables('nicName')]",
-            "location": "[parameters('location')]",
+            "location": "[variables('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'))]",
                 "[resourceId('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
@@ -168,7 +163,7 @@
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2018-10-01",
             "name": "[variables('vmName')]",
-            "location": "[parameters('location')]",
+            "location": "[variables('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]",
                 "[resourceId('Microsoft.Network/networkInterfaces/', variables('nicName'))]"

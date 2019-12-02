@@ -16,9 +16,6 @@
     },
     "vmSize": {
       "value": "Standard_A2_v2"
-    },
-    "location": {
-      "value": "Canada Central"
     }
   }
 }
